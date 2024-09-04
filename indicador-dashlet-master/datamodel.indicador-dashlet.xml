@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<itop_design xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.0">
+  <meta>
+	<dashlets>
+	  <dashlet id="DashletIndicador" _delta="define">
+		<label>Indicador</label>
+		<icon>indicador-dashlet/images/iframe.png</icon>
+		<description>Dashlet que muestra la información de un indicador.</description>
+		<configuration>
+			<url>http://via.placeholder.com/600x300</url>
+			<width>600</width>
+			<height>300</height>
+		</configuration>
+	  </dashlet>
+	</dashlets>
+  </meta>
+</itop_design>

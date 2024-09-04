@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<itop_design xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <menus>
+    <menu id="Indicadores" xsi:type="MenuGroup" _delta="define">
+      <rank>75</rank>
+      <style>
+        <decoration_classes>fas fa-chart-bar</decoration_classes>
+      </style>
+    </menu>
+    <menu id="IndicadoresOverView" xsi:type="DashboardMenuNode" _delta="define">
+      <rank>1</rank>
+      <parent>Indicadores</parent>
+      <definition>
+        <layout>DashboardLayoutOneCol</layout>
+        <title>Menu:IndicadoresOverView</title>
+        <cells>
+          <cell id="0">
+            <rank>0</rank>
+            <dashlets>
+              <dashlet id="1" xsi:type="DashletHeaderStatic">
+                <rank>0</rank>
+                <title>Menu:IndicadoresOverView:Title</title>
+              </dashlet>
+              <dashlet id="2" xsi:type="DashletGroupByPie">
+                <rank>1</rank>
+                <title>UI-RequestManagementOverview-RequestByType-last-14-days</title>
+                <query>SELECT UserRequest WHERE DATE_SUB(NOW(), INTERVAL 14 DAY) &lt; start_date</query>
+                <group_by>request_type</group_by>
+                <style>pie</style>
+              </dashlet>
+              <dashlet id="3" xsi:type="DashletIndicador">
+                <rank>2</rank>
+                <type>prueba</type>
+                <width>200</width>
+                <height>100</height>
+              </dashlet>
+            </dashlets>
+          </cell>
+        </cells>
+      </definition>
+    </menu>
+  </menus>
+</itop_design>

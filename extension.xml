@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extension format="1.0">
+  <extension_code>satis-indicadores-tic</extension_code>
+  <version>1.0.0</version>
+  <label><![CDATA[Satis Indicadores TIC Extension]]></label>
+  <description><![CDATA[Extensión que añade el menú indicadores.]]></description>
+  <mandatory>false</mandatory>
+  <more_info_url></more_info_url>
+</extension>
