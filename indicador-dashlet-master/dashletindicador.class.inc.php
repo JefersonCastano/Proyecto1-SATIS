@@ -33,7 +33,7 @@ class DashletIndicador extends Dashlet
 		//-------------------------------------------------------------------------------
 		$oDashletContainer->AddHtml("<h1>Datos: </h1>");
 
-		$sQuery = "SELECT UserRequest WHERE DATE_SUB(NOW(), INTERVAL 14 DAY) < start_date";
+		$sQuery = "SELECT UserRequest";
 		$oSet = $this->ExecuteQuery($sQuery, $aExtraParams);
 
 		while ($oObj = $oSet->Fetch()) {
@@ -52,7 +52,7 @@ class DashletIndicador extends Dashlet
 		ob_start();
 
 		// Incluir el archivo PHP externo
-		include __DIR__."/pages/my_custom_logic.php";
+		include __DIR__."/pages/vistaIris.php";
 
 		// Obtener el contenido del buffer y limpiarlo
 		$externalContent = ob_get_clean();
