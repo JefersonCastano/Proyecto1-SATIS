@@ -4,7 +4,7 @@
 	<dashlets>
 	  <dashlet id="DashletIndicador" _delta="define">
 		<label>Indicador</label>
-		<icon>indicador-dashlet/images/iframe.png</icon>
+		<icon>indicador-dashlet-master/images/icono-indicadores.png</icon>
 		<description>Dashlet que muestra la información de un indicador.</description>
 		<configuration>
 			<url>http://via.placeholder.com/600x300</url>

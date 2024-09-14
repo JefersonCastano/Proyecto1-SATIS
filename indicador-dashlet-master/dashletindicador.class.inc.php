@@ -6,6 +6,7 @@ use Combodo\iTop\Application\UI\Base\Component\Dashlet\DashletContainer;
 
 class DashletIndicador extends Dashlet
 {
+
 	public function __construct($oModelReflection, $sId)
 	{
 		parent::__construct($oModelReflection, $sId);
@@ -28,8 +29,7 @@ class DashletIndicador extends Dashlet
 		} 
 		
 		$oDashletContainer = new DashletContainer($this->sId, ['dashlet-content']);
-		$HTMLsTitle = ($sTitle != '') ? '<h1 style="text-align:center">'.utils::HtmlEntities($sTitle).'</h1>' : '';
-
+/*
 		//-------------------------------------------------------------------------------
 		$oDashletContainer->AddHtml("<h1>Datos: </h1>");
 
@@ -47,6 +47,7 @@ class DashletIndicador extends Dashlet
 
 		$oDashletContainer->AddHtml("<h1>Grafico: </h1>");
 		//-------------------------------------------------------------------------------
+*/
 
 		// Iniciar el buffer de salida
 		ob_start();
@@ -57,11 +58,11 @@ class DashletIndicador extends Dashlet
 		// Obtener el contenido del buffer y limpiarlo
 		$externalContent = ob_get_clean();
 
-		$oDashletContainer->AddHtml("<div style=\"background-color:#fff;padding:0.25em;\">$HTMLsTitle<div style=\"background-color:#fff;\">$externalContent</div></div>");
-		$oDashletContainer->AddHtml($externalContent);
+	 	//$externalContent = '<div>Hola mundo</div>';
+		$oDashletContainer->AddHtml("<div style=\"background-color:#fff;padding:0.25em;\">$sTitle<div style=\"background-color:#fff;\">$externalContent</div></div>");
 
 		if ($bEditMode) {
-			$oDashletContainer->AddHtml($this->sId, ["idicador-view-blocker"]);
+			$oDashletContainer->AddHtml('<div class="ibo-dashlet-blocker dashlet-blocker"></div>');
 		}
 
 		return $oDashletContainer;
@@ -87,7 +88,7 @@ class DashletIndicador extends Dashlet
 	{
 		return array(
 				'label' => Dict::S('UI:DashletIndicador:Label'),
-				'icon' => 'env-'.utils::GetCurrentEnvironment().'/indicador-dashlet/images/iframe.png',
+				'icon' => 'env-'.utils::GetCurrentEnvironment().'/indicador-dashlet-master/images/icono-indicadores.png',
 				'description' => Dict::S('UI:DashletIndicador:Description'),
 		);
 	}
