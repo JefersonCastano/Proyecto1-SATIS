@@ -1,5 +1,3 @@
-Aquí tienes el texto corregido y mejorado con la estructura adecuada de Markdown:
-
 # Extensión Indicadores de Rendimiento TIC
 
 ## Pasos de instalación
