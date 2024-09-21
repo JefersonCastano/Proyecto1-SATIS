@@ -48,17 +48,45 @@ class DashletIndicador extends Dashlet
 		$oDashletContainer->AddHtml("<h1>Grafico: </h1>");
 		//-------------------------------------------------------------------------------
 */
+		// Incluir el archivo que contiene la clase
+		require_once __DIR__."/utils/FileReader.php";
 
-		// Iniciar el buffer de salida
-		ob_start();
+		// Instanciar la clase y leer archivos de una subcarpeta
+		$lector = new FileReader(__DIR__.'/indicadores');
 
-		// Incluir el archivo PHP externo
-		include __DIR__."/pages/vistaIris.php";
+		// Obtener la lista de archivos
+		$archivos = $lector->leerArchivos();
 
-		// Obtener el contenido del buffer y limpiarlo
-		$externalContent = ob_get_clean();
+		$externalContent = "";
+		foreach ($archivos as $archivo) {
 
-	 	//$externalContent = '<div>Hola mundo</div>';
+			// Dividir el nombre del archivo en partes usando el carácter de subrayado como delimitador
+			$partesArchivo = explode('.', $archivo);
+
+			// Verificar si el archivo tiene al menos 4 partes
+			if (count($partesArchivo) < 4) {
+				continue;
+			}
+
+			// Incluir el archivo PHP externo que contiene la clase hija
+			include_once __DIR__ . "/indicadores/" . $archivo;
+		
+			// Obtener el nombre de la clase hija (asumiendo que el nombre del archivo es el mismo que el nombre de la clase)
+			$className = $this->GetClassNameByFileName($archivo);
+		
+			// Verificar si la clase existe y luego instanciarla
+			if (class_exists($className)) {
+				$indicador = new $className();
+				if ($indicador instanceof Indicador) {
+					$externalContent .= $indicador->render();
+				} else {
+					$externalContent .= "<p>Error: La clase $className no es una instancia de Indicador.</p>";
+				}
+			} else {
+				$externalContent .= "<p>Error: La clase $className no existe.</p>";
+			}
+		}
+
 		$oDashletContainer->AddHtml("<div style=\"background-color:#fff;padding:0.25em;\">$sTitle<div style=\"background-color:#fff;\">$externalContent</div></div>");
 
 		if ($bEditMode) {
@@ -91,6 +119,15 @@ class DashletIndicador extends Dashlet
 				'icon' => 'env-'.utils::GetCurrentEnvironment().'/indicador-dashlet-master/images/icono-indicadores.png',
 				'description' => Dict::S('UI:DashletIndicador:Description'),
 		);
+	}
+
+	private function GetClassNameByFileName($sFileName)
+	{
+		$sClassName = str_replace('.class.php', '', $sFileName);
+		$sClassName = str_replace('indicador.', '', $sClassName);
+		$sClassName = str_replace('.', '', $sClassName);
+		$sClassName = ucfirst($sClassName);
+		return "Indicador".$sClassName;
 	}
 
 	private function ExecuteQuery($sQuery, $aExtraParams = array())

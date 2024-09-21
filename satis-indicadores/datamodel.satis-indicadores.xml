@@ -34,6 +34,12 @@
                 <width>200</width>
                 <height>100</height>
               </dashlet>
+              <dashlet id="4" xsi:type="DashletIndicador">
+                <rank>3</rank>
+                <type>prueba2</type>
+                <width>200</width>
+                <height>100</height>
+              </dashlet>
             </dashlets>
           </cell>
         </cells>
