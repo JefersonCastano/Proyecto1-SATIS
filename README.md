@@ -41,7 +41,9 @@
     Luego, dirigirse al menú "iTop Update". En el apartado "Compilation", hacer clic en "UPDATE ITOP CODE" y aceptar. Al finalizar este proceso, los cambios en SATIS se verán al recargar la página.
 
 > **Nota**: La instalación del Toolkit es solo para desarrollo y no se recomienda para el despliegue en producción.
-
+---
+Versión de iTop: https://sourceforge.net/projects/itop/files/itop/3.0.3/
+Versión de php: 7.4 (Para windows se puede descargar en https://windows.php.net/downloads/releases/php-7.4.33-Win32-vc15-x64.zip)
 ---
 # Créditos de Desarrollo
 
