@@ -42,8 +42,9 @@
 
 > **Nota**: La instalación del Toolkit es solo para desarrollo y no se recomienda para el despliegue en producción.
 ---
-Versión de iTop: https://sourceforge.net/projects/itop/files/itop/3.0.3/
-Versión de php: 7.4 (Para windows se puede descargar en https://windows.php.net/downloads/releases/php-7.4.33-Win32-vc15-x64.zip)
+## Especificaciones técnicas
+- Versión de iTop: 3.0.3-10998 (Disponible en https://sourceforge.net/projects/itop/files/itop/3.0.3/)
+- Versión de php: 7.4 (Para windows se puede descargar desde https://windows.php.net/downloads/releases/php-7.4.33-Win32-vc15-x64.zip)
 ---
 # Créditos de Desarrollo
 
