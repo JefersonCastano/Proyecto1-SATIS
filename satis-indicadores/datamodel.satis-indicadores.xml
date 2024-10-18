@@ -49,6 +49,10 @@
                 <rank>2</rank>
                 <type>satisfaccion</type>
               </dashlet>
+              <dashlet id="3" xsi:type="DashletIndicador">
+                <rank>3</rank>
+                <type>test</type>
+              </dashlet>
               </dashlets>
           </cell>
         </cells>

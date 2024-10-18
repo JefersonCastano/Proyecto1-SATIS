@@ -67,7 +67,8 @@ class DashletIndicador extends Dashlet
 		//TODO: Hacer que se lean automaticamente los archivos de la carpeta indicadores para obtener los tipos de indicadores?
 		$aTypes = array(
 			'efectividad' => Dict::S('UI:DashletIndicador:Prop-Type-Efectividad'),
-			'satisfaccion' => Dict::S('UI:DashletIndicador:Prop-Type-Satisfaccion')
+			'satisfaccion' => Dict::S('UI:DashletIndicador:Prop-Type-Satisfaccion'),
+			'test' => Dict::S('UI:DashletIndicador:Prop-Type-Test'),
 		);
 
 		return $aTypes;
