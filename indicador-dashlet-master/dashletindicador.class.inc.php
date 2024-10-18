@@ -43,8 +43,11 @@ class DashletIndicador extends Dashlet
 
 	public function GetPropertiesFields(DesignerForm $oForm)
 	{
-		$oField = new DesignerLongTextField('type', Dict::S('UI:DashletIndicador:Prop-Type'), $this->aProperties['type']);
+		$aTypes = $this->GetIndicadoresTypes();
+
+		$oField = new DesignerComboField('type', Dict::S('UI:DashletIndicador:Prop-Type'), $this->aProperties['type']);
 		$oField->SetMandatory();
+		$oField->SetAllowedValues($aTypes);
 		$oForm->AddField($oField);
 	}
 
@@ -55,5 +58,18 @@ class DashletIndicador extends Dashlet
 				'icon' => 'env-'.utils::GetCurrentEnvironment().'/indicador-dashlet-master/images/icono-indicadores.png',
 				'description' => Dict::S('UI:DashletIndicador:Description'),
 		);
+	}
+
+	private function GetIndicadoresTypes()
+	{
+		// Tipos de indicadores
+		// Se pueden agregar más tipos de indicadores aquí
+		//TODO: Hacer que se lean automaticamente los archivos de la carpeta indicadores para obtener los tipos de indicadores?
+		$aTypes = array(
+			'efectividad' => Dict::S('UI:DashletIndicador:Prop-Type-Efectividad'),
+			'satisfaccion' => Dict::S('UI:DashletIndicador:Prop-Type-Satisfaccion')
+		);
+
+		return $aTypes;
 	}
 }

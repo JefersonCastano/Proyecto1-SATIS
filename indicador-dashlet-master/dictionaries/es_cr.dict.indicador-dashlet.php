@@ -14,4 +14,6 @@ Dict::Add('ES CR', 'Spanish', 'Español, Castellano', array(
 	'UI:DashletIndicador:Prop-Type' => 'Tipo de indicador',
 	'UI:DashletIndicador:Prop-Width' => 'Ancho (px)',
 	'UI:DashletIndicador:Prop-Height' => 'Alto (px)',
+	'UI:DashletIndicador:Prop-Type-Efectividad' => 'Efectividad',
+	'UI:DashletIndicador:Prop-Type-Satisfaccion' => 'Satisfaccion',
 ));
