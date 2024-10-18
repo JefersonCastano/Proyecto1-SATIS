@@ -1,7 +1,7 @@
 <?php
     require_once 'indicador.class.php';
 
-    class IndicadorSatisfaccion extends Indicador {
+    class IndicadorEfectividad extends Indicador {
         
         protected $aDashletGroupBy;
 
@@ -11,10 +11,10 @@
 
         public function Render($oPage, $bEditMode = false, $aExtraParams = array()) {
 
-            $properties['title'] = 'Satisfacción de Usuarios';
-            $properties['query'] = 'SELECT UserRequest WHERE status IN ("Resolved","Closed")';
-            $properties['group_by'] = 'user_satisfaction';
-            $properties['style'] = 'bars';
+            $properties['title'] = 'Requisitos Reportados';
+            $properties['query'] = 'SELECT UserRequest FROM UserRequest WHERE `status` IN ("new","Assigned","escalated_tto","waiting_for_approval","Pending","escalated_ttr","Approved","Rejected")';
+            $properties['group_by'] = 'status';
+            $properties['style'] = 'pie';
             $properties['aggregation_function'] = 'count';
             $properties['aggregation_attribute'] = '';
             $properties['limit'] = '';
