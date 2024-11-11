@@ -22,7 +22,7 @@ class DashletIndicador extends Dashlet
 		}
 
 		$classFileName = "indicador." . $sType . ".class.php";
-		$className = $this->GetClassName($sType);
+		$className = $this->GetIndicadorClassName($sType);
 
 		// Incluir el archivo PHP externo que contiene la clase hija
 		include_once __DIR__ . "/indicadores/" . $classFileName;
@@ -60,7 +60,7 @@ class DashletIndicador extends Dashlet
 		);
 	}
 
-	private function GetClassName(String $sType)
+	private function GetIndicadorClassName(String $sType)
 	{
 		$parts = explode('-', $sType);
 		$className = 'Indicador';
@@ -95,10 +95,10 @@ class DashletIndicador extends Dashlet
 						$typeParts[] = ucfirst($namePart);
 					}
 
-					$type = implode('-', $typeParts);
-
+					$typeLabelName = implode('-', $typeParts);
+					$type = $parts[1];
 					// Agregar el tipo de indicador al array
-					$aTypes[$type] = Dict::S('UI:DashletIndicador:Prop-Type-' . ucfirst($type));
+					$aTypes[$type] = Dict::S('UI:DashletIndicador:Prop-Type-' . ucfirst($typeLabelName));
 				}
 			}
 		}

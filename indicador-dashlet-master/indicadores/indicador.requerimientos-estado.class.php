@@ -1,8 +1,9 @@
 <?php
     require_once 'indicador.class.php';
+    use Combodo\iTop\Application\UI\Base\Component\Panel\PanelUIBlockFactory;
 
-    class IndicadorEfectividad extends Indicador {
-        
+    class IndicadorRequerimientosEstado extends Indicador {
+
         protected $aDashletGroupBy;
 
         public function __construct($oModelReflection, $sId) {
@@ -11,7 +12,7 @@
 
         public function Render($oPage, $bEditMode = false, $aExtraParams = array()) {
 
-            $properties['title'] = 'Requisitos Reportados';
+            $properties['title'] = 'Cantidad de Requerimientos por Estado';
             $properties['query'] = 'SELECT UserRequest FROM UserRequest WHERE `status` IN ("new","Assigned","escalated_tto","waiting_for_approval","Pending","escalated_ttr","Approved","Rejected")';
             $properties['group_by'] = 'status';
             $properties['style'] = 'pie';
