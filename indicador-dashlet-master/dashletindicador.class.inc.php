@@ -22,7 +22,7 @@ class DashletIndicador extends Dashlet
 		}
 
 		$classFileName = "indicador." . $sType . ".class.php";
-		$className = "Indicador" . ucfirst($sType);
+		$className = $this->GetClassName($sType);
 
 		// Incluir el archivo PHP externo que contiene la clase hija
 		include_once __DIR__ . "/indicadores/" . $classFileName;
@@ -60,16 +60,48 @@ class DashletIndicador extends Dashlet
 		);
 	}
 
+	private function GetClassName(String $sType)
+	{
+		$parts = explode('-', $sType);
+		$className = 'Indicador';
+
+		foreach ($parts as $part) {
+			$className .= ucfirst($part);
+		}
+		return $className;
+	}
+
 	private function GetIndicadoresTypes()
 	{
-		// Tipos de indicadores
-		// Se pueden agregar más tipos de indicadores aquí
-		//TODO: Hacer que se lean automaticamente los archivos de la carpeta indicadores para obtener los tipos de indicadores?
-		$aTypes = array(
-			'efectividad' => Dict::S('UI:DashletIndicador:Prop-Type-Efectividad'),
-			'satisfaccion' => Dict::S('UI:DashletIndicador:Prop-Type-Satisfaccion'),
-			'test' => Dict::S('UI:DashletIndicador:Prop-Type-Test'),
-		);
+		// Directorio de indicadores
+		$dir = __DIR__ . '/indicadores';
+
+		// Obtener lista de archivos en el directorio de indicadores
+		$files = scandir($dir);
+
+		$aTypes = array();
+
+		foreach ($files as $file) {
+			// Ignorar los directorios '.' y '..'
+			if ($file !== '.' && $file !== '..') {
+				// Hacer split del nombre del archivo por '.'
+				$parts = explode('.', $file);
+				// Verificar que el resultado tenga exactamente 4 partes
+				if (count($parts) === 4 && $parts[0] === 'indicador' && $parts[2] === 'class' && $parts[3] === 'php') {
+					// Obtener el nombre del tipo de indicador
+					$typeParts = array();
+
+					foreach (explode('-', $parts[1]) as $namePart) {
+						$typeParts[] = ucfirst($namePart);
+					}
+
+					$type = implode('-', $typeParts);
+
+					// Agregar el tipo de indicador al array
+					$aTypes[$type] = Dict::S('UI:DashletIndicador:Prop-Type-' . ucfirst($type));
+				}
+			}
+		}
 
 		return $aTypes;
 	}
