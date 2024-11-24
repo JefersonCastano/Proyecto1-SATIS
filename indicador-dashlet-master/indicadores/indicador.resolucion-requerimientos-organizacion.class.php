@@ -4,14 +4,26 @@
 
     class IndicadorResolucionRequerimientosOrganizacion extends Indicador {
 
+        protected $aDashletGroupBy;
+
         public function __construct($oModelReflection, $sId) {
+            $this->aDashletGroupBy = new DashletGroupByPie($oModelReflection, $sId);
         }
 
         public function Render($oPage, $bEditMode = false, $aExtraParams = array()) {
 
-            $oPanel = PanelUIBlockFactory::MakeForSuccess('Cantidad de requerimientos y tiempo medio de resolución según la organización', '');
-            $oPanel->AddHtml('<p>Objetivo: Identificar oportunidades de mejora evaluando el tiempo medio de resolución de los requerimientos según su organización, también teniendo en cuenta el número de estos..</p>');
+            $properties['title'] = 'Tiempo de Resolución por Organización';
+            $properties['query'] = 'SELECT UserRequest WHERE status IN ("rejected","closed")';
+            $properties['group_by'] = 'org_id';
+            $properties['style'] = 'bars';
+            $properties['aggregation_function'] = 'avg';
+            $properties['aggregation_attribute'] = 'time_spent';
+            $properties['limit'] = '';
+            $properties['order_by'] = 'function';
+            $properties['order_direction'] = '';
 
-            return $oPanel;
+            $this->aDashletGroupBy->FromParams($properties);
+
+            return $this->aDashletGroupBy->Render($oPage, $bEditMode, $aExtraParams);
         }
     }

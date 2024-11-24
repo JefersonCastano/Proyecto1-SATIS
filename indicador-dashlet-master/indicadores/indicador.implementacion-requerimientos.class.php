@@ -4,14 +4,26 @@
 
     class IndicadorImplementacionRequerimientos extends Indicador {
 
+        protected $aDashletGroupBy;
+
         public function __construct($oModelReflection, $sId) {
+            $this->aDashletGroupBy = new DashletGroupByPie($oModelReflection, $sId);
         }
 
         public function Render($oPage, $bEditMode = false, $aExtraParams = array()) {
 
-            $oPanel = PanelUIBlockFactory::MakeForSuccess('Porcentaje de implementación de requerimientos aprobados para los sistemas de información de la Universidad del Cauca.', '');
-            $oPanel->AddHtml('<p>Mide la cantidad de tickets de soporte cerrados por cada empleado del equipo de TI. Este indicador es esencial para identificar problemas en el rendimiento individual y colectivo, evaluando la eficacia del equipo en resolver incidencias y su capacidad para mantener los estándares de productividad. Ayuda a detectar brechas en el rendimiento, posibles deficiencias en la formación y la falta de estandarización en los procedimientos de soporte.</p>');
+            $properties['title'] = 'Implementación de Requerimientos Aprobados';
+            $properties['query'] = 'SELECT UserRequest FROM UserRequest WHERE `status` IN ("waiting_for_approval","Approved")';
+            $properties['group_by'] = 'status';
+            $properties['style'] = 'pie';
+            $properties['aggregation_function'] = 'count';
+            $properties['aggregation_attribute'] = '';
+            $properties['limit'] = '';
+            $properties['order_by'] = '';
+            $properties['order_direction'] = '';
 
-            return $oPanel;
+            $this->aDashletGroupBy->FromParams($properties);
+
+            return $this->aDashletGroupBy->Render($oPage, $bEditMode, $aExtraParams);
         }
     }
