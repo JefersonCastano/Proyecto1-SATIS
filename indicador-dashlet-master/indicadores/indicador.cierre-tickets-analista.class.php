@@ -4,14 +4,26 @@
 
     class IndicadorCierreTicketsAnalista extends Indicador {
 
+        protected $aDashletGroupBy;
+
         public function __construct($oModelReflection, $sId) {
+            $this->aDashletGroupBy = new DashletGroupByPie($oModelReflection, $sId);
         }
 
         public function Render($oPage, $bEditMode = false, $aExtraParams = array()) {
 
-            $oPanel = PanelUIBlockFactory::MakeForSuccess('Tasa de Cierre de Tickets de Soporte por Analista en el Área de TI', '');
-            $oPanel->AddHtml('<p>Objetivo: Mide la cantidad de tickets de soporte cerrados por cada empleado del equipo de TI. Este indicador es esencial para identificar problemas en el rendimiento individual y colectivo, evaluando la eficacia del equipo en resolver incidencias y su capacidad para mantener los estándares de productividad. Ayuda a detectar brechas en el rendimiento, posibles deficiencias en la formación y la falta de estandarización en los procedimientos de soporte.</p>');
+            $properties['title'] = 'Requerimientos por niveles de satisfacción';
+            $properties['query'] = 'SELECT UserRequest WHERE status NOT IN ("rejected","closed")';
+            $properties['group_by'] = 'agent_id';
+            $properties['style'] = 'table';
+            $properties['aggregation_function'] = 'avg';
+            $properties['aggregation_attribute'] = 'time_spent';
+            $properties['limit'] = '';
+            $properties['order_by'] = 'function';
+            $properties['order_direction'] = 'desc';
 
-            return $oPanel;
+            $this->aDashletGroupBy->FromParams($properties);
+
+            return $this->aDashletGroupBy->Render($oPage, $bEditMode, $aExtraParams);
         }
     }
