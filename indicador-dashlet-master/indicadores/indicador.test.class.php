@@ -1,6 +1,7 @@
 <?php
     require_once 'indicador.class.php';
     use Combodo\iTop\Application\UI\Base\Component\Dashlet\DashletContainer;
+    use Combodo\iTop\Application\UI\Base\Component\Panel\PanelUIBlockFactory;
 
     class IndicadorTest extends Indicador {
 
@@ -13,7 +14,7 @@
             $sCSSFile = utils::GetAbsoluteUrlModulesRoot() . 'indicador-dashlet-master/asset/css/dashlet-indicador.css';
             $oPage->add_linked_stylesheet($sCSSFile);
 
-            $oPanel = new DashletContainer('dashlet-indicador');
+            $oPanel = PanelUIBlockFactory::MakeForInformation('Test', '');
             $oPanel->AddCSSClass('dashlet-indicador');
             $oPanel->AddHtml('<p>Este es un indicador de test, puedo insertar código HTML libremente.</p>');
             $oPanel->AddHtml('<p>Como por ejemplo, James Rodriguez.</p>');

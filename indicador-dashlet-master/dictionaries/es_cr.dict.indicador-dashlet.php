@@ -12,10 +12,20 @@ Dict::Add('ES CR', 'Spanish', 'Español, Castellano', array(
 	// Dictionary entries go here
 	'UI:DashletIndicador:Label' => 'Indicador',
 	'UI:DashletIndicador:Prop-Type' => 'Tipo de indicador',
-	'UI:DashletIndicador:Prop-Width' => 'Ancho (px)',
-	'UI:DashletIndicador:Prop-Height' => 'Alto (px)',
+
 	'UI:DashletIndicador:Prop-Type-Tiempo-Resolucion-Requerimientos' => 'Tiempo de Resolución de Requerimientos',
-	
+	'UI:DashletIndicador:Prop-Type-Tiempo-Resolucion-Requerimientos:Prop-AverageTime' => 'Tiempo de Resolución Promedio',
+	'UI:DashletIndicador:Prop-Type-Tiempo-Resolucion-Requerimientos:Prop-MedianTime' => 'Tiempo de Resolución Medio',
+	'UI:DashletIndicador:Prop-Type-Tiempo-Resolucion-Requerimientos:Prop-MostFrequentType' => 'Tipo de Resolución Más Frecuente',
+	'UI:DashletIndicador:Prop-Type-Tiempo-Resolucion-Requerimientos:Prop-Combobox-Filter' => 'Filtro',
+	'UI:DashletIndicador:Prop-Type-Tiempo-Resolucion-Requerimientos:Prop-Combobox-Filter-Sel' => '-- Seleccione uno --',
+	'UI:DashletIndicador:Prop-Type-Tiempo-Resolucion-Requerimientos:Prop-Combobox-Filter-Option-1' => 'Impacto',
+	'UI:DashletIndicador:Prop-Type-Tiempo-Resolucion-Requerimientos:Prop-Combobox-Filter-Option-2' => 'Origen',
+	'UI:DashletIndicador:Prop-Type-Tiempo-Resolucion-Requerimientos:Prop-Combobox-Filter-Option-3' => 'Prioridad',
+	'UI:DashletIndicador:Prop-Type-Tiempo-Resolucion-Requerimientos:Prop-Combobox-Filter-Option-4' => 'Tipo de Solicitud',
+	'UI:DashletIndicador:Prop-Type-Tiempo-Resolucion-Requerimientos:Prop-Combobox-Filter-Option-5' => 'Urgencia',
+	'UI:DashletIndicador:Prop-Type-Tiempo-Resolucion-Requerimientos:Prop-NoSel' => 'Por favor seleccione el criterio por el cual los requerimientos serán agrupados',
+
 	'UI:DashletIndicador:Prop-Type-Requerimientos-Estado' => 'Cantidad de Requerimientos por Estado',
 	'UI:DashletIndicador:Prop-Type-Satisfaccion' => 'Cantidad de requerimientos por niveles de satisfacción',
 	'UI:DashletIndicador:Prop-Type-Resolucion-Requerimientos-Organizacion' => 'Cantidad de requerimientos y tiempo medio de resolución según la organización',

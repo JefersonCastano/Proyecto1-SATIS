@@ -10,35 +10,68 @@
         protected $aDashletGroupBy;
 
         public function __construct($oModelReflection, $sId) {
-            $this->aType = ['request_type', 'priority', 'impact', 'urgency', 'origin'];
+            $this->aType = ['general', 'impact', 'origin', 'priority', 'request_type', 'urgency'];
             $this->aDashletGroupBy = new DashletGroupByPie($oModelReflection, $sId);
         }
 
         public function Render($oPage, $bEditMode = false, $aExtraParams = array()) {
+            session_start();
 
-            $oPanel = PanelUIBlockFactory::MakeForInformation(Dict::S('UI:DashletIndicador:Prop-Type-Tiempo-Resolucion-Requerimientos'), '');
+            // Verificar si se envió el formulario
+            if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['filter'])) {
+                $_SESSION['selected_value'] = $_POST['filter'];
+                header('Location: ' . $_SERVER['REQUEST_URI']); // Redirigir a la misma URL
+                exit; // Terminar la ejecución del script
+            }
+
+            // Recuperar el valor seleccionado de la sesión (si existe)
+            $selectedValue = isset($_SESSION['selected_value']) ? $_SESSION['selected_value'] : 0;
+
+            $sCSSFile = utils::GetAbsoluteUrlModulesRoot() . 'indicador-dashlet-master/asset/css/dashlet-indicador.css';
+            $oPage->add_linked_stylesheet($sCSSFile);
 
             $avg = $this->GetSolutionAverageTime();
             $median = $this->GetSolutionMedianTime();
             $mostFrequentType = $this->GetMostFrequentSolutionType();
 
-            $oPanel->AddHtml("<p>Tiempo de Resolución Promedio:</p>");
-            $oPanel->AddHtml('<p style="color: #1F77B4; font-size: 30px; font-weight: bold;">' . $avg . '</p>');
-            $oPanel->AddHtml("<p>Tiempo de Resolución Medio: $median</p>");
-            $oPanel->AddHtml("<p>Tipo de Resolución Más Frecuente:</p>");
-            $oPanel->AddHtml('<p style="color: #1F77B4; font-size: 30px; font-weight: bold;">' . $mostFrequentType . '</p>');
-
-            //TODO: BORRAR
-            //$oPanel->AddMainBlock($this->EJEMPLO($oPage, $bEditMode , $aExtraParams));
+            $oPanel = PanelUIBlockFactory::MakeForInformation(Dict::S('UI:DashletIndicador:Prop-Type-Tiempo-Resolucion-Requerimientos'), '');
+            $oPanel->AddHtml("<p>" . Dict::S('UI:DashletIndicador:Prop-Type-Tiempo-Resolucion-Requerimientos:Prop-AverageTime') . ":</p>");
+            $oPanel->AddHtml('<p class="blue-bold-text">' . $avg . '</p>');
+            $oPanel->AddHtml("<p>" . Dict::S('UI:DashletIndicador:Prop-Type-Tiempo-Resolucion-Requerimientos:Prop-MedianTime') . ":</p>");
+            $oPanel->AddHtml('<p class="blue-bold-text">' . $median . '</p>');
+            $oPanel->AddHtml("<p>" . Dict::S('UI:DashletIndicador:Prop-Type-Tiempo-Resolucion-Requerimientos:Prop-MostFrequentType') . ":</p>");
+            $oPanel->AddHtml('<p class="blue-bold-text">' . $mostFrequentType . '</p>');
+            $oPanel->AddHtml('<hr>');
             
+            $oPanel->AddHtml('<form method="post" action="" id="filter-form">
+                                <div class="form-group-horizontal">
+                                    <label for="filter" class="form-label">' . Dict::S('UI:DashletIndicador:Prop-Type-Tiempo-Resolucion-Requerimientos:Prop-Combobox-Filter') . '</label>
+                                    <select id="filter" name="filter" class="form-combobox">
+                                        <option value="0"' . ($selectedValue == 0 ? ' selected' : '') . '>' . Dict::S('UI:DashletIndicador:Prop-Type-Tiempo-Resolucion-Requerimientos:Prop-Combobox-Filter-Sel') . '</option>
+                                        <option value="1"' . ($selectedValue == 1 ? ' selected' : '') . '>' . Dict::S('UI:DashletIndicador:Prop-Type-Tiempo-Resolucion-Requerimientos:Prop-Combobox-Filter-Option-1') . '</option>
+                                        <option value="2"' . ($selectedValue == 2 ? ' selected' : '') . '>' . Dict::S('UI:DashletIndicador:Prop-Type-Tiempo-Resolucion-Requerimientos:Prop-Combobox-Filter-Option-2') . '</option>
+                                        <option value="3"' . ($selectedValue == 3 ? ' selected' : '') . '>' . Dict::S('UI:DashletIndicador:Prop-Type-Tiempo-Resolucion-Requerimientos:Prop-Combobox-Filter-Option-3') . '</option>
+                                        <option value="4"' . ($selectedValue == 4 ? ' selected' : '') . '>' . Dict::S('UI:DashletIndicador:Prop-Type-Tiempo-Resolucion-Requerimientos:Prop-Combobox-Filter-Option-4') . '</option>
+                                        <option value="5"' . ($selectedValue == 5 ? ' selected' : '') . '>' . Dict::S('UI:DashletIndicador:Prop-Type-Tiempo-Resolucion-Requerimientos:Prop-Combobox-Filter-Option-5') . '</option>
+                                    </select>
+                                    <button type="submit" class="submit-button">Aplicar</button>
+                                </div>
+                            </form>');
+        
+            if ($selectedValue != 0) {
+                $oPanel->AddHtml('<p class="chart-title">Requerimientos por ' . Dict::S('Class:UserRequest/Attribute:' . $this->aType[$selectedValue]) . '</p>');
+                $oPanel->AddMainBlock($this->GetGraphic($oPage, $bEditMode , $aExtraParams, $selectedValue));
+            } else {
+                $oPanel->AddHtml('<p >' . Dict::S('UI:DashletIndicador:Prop-Type-Tiempo-Resolucion-Requerimientos:Prop-NoSel') . '</p>');
+            }
+        
             return $oPanel;
         }
 
-        private function EJEMPLO($oPage, $bEditMode = false, $aExtraParams = array()){
+        private function GetGraphic($oPage, $bEditMode = false, $aExtraParams = array(), $selectedValue) {
 
-            $type = $this->aType[1];
+            $type = $this->aType[$selectedValue];
 
-            $properties['title'] = 'Requerimientos por ' . Dict::S('Class:UserRequest/Attribute:' . $type);
             $properties['query'] = "SELECT UserRequest FROM UserRequest WHERE UserRequest.status IN ('Resolved','Closed')";
             $properties['group_by'] = $type;
             $properties['style'] = 'bars';
