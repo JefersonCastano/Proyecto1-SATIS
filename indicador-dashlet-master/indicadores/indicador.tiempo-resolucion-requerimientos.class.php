@@ -16,18 +16,20 @@
 
         public function Render($oPage, $bEditMode = false, $aExtraParams = array()) {
 
-            $oPanel = PanelUIBlockFactory::MakeNeutral('Tiempo de Resolución Promedio, Tipo de Resolución Más Frecuente y Tiempo Medio de Resolución de Requerimientos', '');
+            $oPanel = PanelUIBlockFactory::MakeForInformation(Dict::S('UI:DashletIndicador:Prop-Type-Tiempo-Resolucion-Requerimientos'), '');
 
             $avg = $this->GetSolutionAverageTime();
             $median = $this->GetSolutionMedianTime();
             $mostFrequentType = $this->GetMostFrequentSolutionType();
 
-            $oPanel->AddHtml("<p>Tiempo de Resolución Promedio: $avg</p>");
+            $oPanel->AddHtml("<p>Tiempo de Resolución Promedio:</p>");
+            $oPanel->AddHtml('<p style="color: #1F77B4; font-size: 30px; font-weight: bold;">' . $avg . '</p>');
             $oPanel->AddHtml("<p>Tiempo de Resolución Medio: $median</p>");
-            $oPanel->AddHtml("<p>Tipo de Resolución Más Frecuente: $mostFrequentType</p>");
+            $oPanel->AddHtml("<p>Tipo de Resolución Más Frecuente:</p>");
+            $oPanel->AddHtml('<p style="color: #1F77B4; font-size: 30px; font-weight: bold;">' . $mostFrequentType . '</p>');
 
             //TODO: BORRAR
-            $oPanel->AddMainBlock($this->EJEMPLO($oPage, $bEditMode , $aExtraParams));
+            //$oPanel->AddMainBlock($this->EJEMPLO($oPage, $bEditMode , $aExtraParams));
             
             return $oPanel;
         }

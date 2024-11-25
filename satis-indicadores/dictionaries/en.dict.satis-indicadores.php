@@ -9,7 +9,7 @@
 Dict::Add('EN US', 'English', 'English', array(
 	'Menu:Indicadores' => 'Indicators',
 	'Menu:Indicadores+' => 'Indicators',
-	'Menu:IndicadoresOverView' => 'Indicators resume',
-	'Menu:IndicadoresOverView:Title' => 'Indicators resume'
+	'Menu:IndicadoresOverView' => 'Indicators Resume',
+	'Menu:IndicadoresOverView:Title' => 'Indicators Resume'
 ));
 ?>
