@@ -30,11 +30,11 @@
                 <rank>1</rank>
                 <type>tiempo-resolucion-requerimientos</type>
               </dashlet>
-              <!--
               <dashlet id="3" xsi:type="DashletIndicador">
                 <rank>2</rank>
                 <type>satisfaccion</type>
               </dashlet>
+              <!--
               <dashlet id="4" xsi:type="DashletIndicador">
                 <rank>3</rank>
                 <type>cierre-tickets-analista</type>
@@ -45,21 +45,11 @@
           <cell id="1">
             <rank>1</rank>
             <dashlets>
-              <!--
-              <dashlet id="1" xsi:type="DashLetEmptyCell">
-                <rank>0</rank>
-              </dashlet>
-              
-              <dashlet id="3" xsi:type="DashletIndicador">
-                <rank>1</rank>
-                <type>test</type>
-              </dashlet>
-
               <dashlet id="2" xsi:type="DashletIndicador">
-                <rank>2</rank>
+                <rank>4</rank>
                 <type>requerimientos-estado</type>
               </dashlet>
-              
+              <!--
               <dashlet id="3" xsi:type="DashletIndicador">
                 <rank>3</rank>
                 <type>resolucion-requerimientos-organizacion</type>

@@ -11,7 +11,7 @@
 
         public function Render($oPage, $bEditMode = false, $aExtraParams = array()) {
 
-            $properties['title'] = 'Requerimientos por niveles de satisfacción';
+            $properties['title'] = Dict::S('UI:DashletIndicador:Prop-Type-Satisfaccion');
             $properties['query'] = 'SELECT UserRequest WHERE status IN ("Resolved","Closed")';
             $properties['group_by'] = 'user_satisfaction';
             $properties['style'] = 'bars';

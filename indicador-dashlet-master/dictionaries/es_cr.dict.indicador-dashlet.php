@@ -26,8 +26,12 @@ Dict::Add('ES CR', 'Spanish', 'Español, Castellano', array(
 	'UI:DashletIndicador:Prop-Type-Tiempo-Resolucion-Requerimientos:Prop-Combobox-Filter-Option-5' => 'Urgencia',
 	'UI:DashletIndicador:Prop-Type-Tiempo-Resolucion-Requerimientos:Prop-NoSel' => 'Por favor seleccione el criterio por el cual los requerimientos serán agrupados',
 
-	'UI:DashletIndicador:Prop-Type-Requerimientos-Estado' => 'Cantidad de Requerimientos por Estado',
-	'UI:DashletIndicador:Prop-Type-Satisfaccion' => 'Cantidad de requerimientos por niveles de satisfacción',
+	'UI:DashletIndicador:Prop-Type-Requerimientos-Estado' => 'Requerimientos por Estado',
+	'UI:DashletIndicador:Prop-Type-Requerimientos-Estado:chart1-title' => 'Cantidad de Requerimientos por Estado',
+	'UI:DashletIndicador:Prop-Type-Requerimientos-Estado:chart2-title' => 'Requerimientos Reportados vs Resueltos',
+
+	'UI:DashletIndicador:Prop-Type-Satisfaccion' => 'Requerimientos por Nivel de Satisfacción',
+
 	'UI:DashletIndicador:Prop-Type-Resolucion-Requerimientos-Organizacion' => 'Cantidad de requerimientos y tiempo medio de resolución según la organización',
 	'UI:DashletIndicador:Prop-Type-Cierre-Tickets-Analista' => 'Tasa de Cierre de Tickets de Soporte por Analista en el Área de TI',
 	'UI:DashletIndicador:Prop-Type-Implementacion-Requerimientos' => 'Porcentaje de implementación de requerimientos aprobados para los sistemas de información de la Universidad del Cauca',
