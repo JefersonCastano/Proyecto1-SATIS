@@ -1,0 +1,73 @@
+.dashlet-indicador {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    color: #333;
+    background-color: #f4f4f4;
+    padding: 20px;
+    border-radius: 10px;
+    border: 2px solid #007bff; /* Aumentar el grosor del borde y cambiar el color */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.dashlet-indicador h1 {
+    font-size: 18px;
+    color: #007bff;
+}
+
+.dashlet-indicador p {
+    margin-top: 10px;
+    line-height: 1.6;
+    color: #0c27d6;
+    font-size: x-large;
+}
+/* Limitar el tamaño del contenedor principal del dashlet */
+#dashlet-indicador {
+    max-width: 50%; /* Ocupa la mitad del ancho disponible */
+    margin: 0 auto; /* Centrar el dashlet horizontalmente */
+    overflow: hidden; /* Esconde contenido que exceda */
+    box-sizing: border-box; /* Asegura que el padding y border no excedan el tamaño */
+    padding: 10px; /* Espaciado interno para mejorar la visualización */
+}
+
+/* Limitar el tamaño del gráfico dentro del dashlet */
+#dashlet-indicador .dashboard_chart.c3 {
+    width: 100%; /* Ajusta al ancho del contenedor principal */
+    max-width: 100%; /* Restricción máxima al ancho del contenedor */
+    height: auto; /* Escala la altura automáticamente */
+    max-height: 250px; /* Restricción máxima de altura */
+}
+
+/* Estilo para elementos gráficos (SVG) */
+#dashlet-indicador .dashboard_chart.c3 svg {
+    max-width: 100%; /* Asegura que el SVG no exceda el contenedor */
+    height: auto; /* Escala la altura proporcionalmente */
+    max-height: 250px; /* Restricción máxima de altura */
+}
+
+/* Opcional: Ajustar texto o contenido adicional */
+#dashlet-indicador p {
+    font-size: 14px; /* Ajusta el tamaño del texto */
+    text-align: center; /* Centra el texto dentro del dashlet */
+    margin: 10px 0; /* Espaciado entre párrafos */
+}
+
+.dashlet-indicador .ibo-panel--body::before {
+    content: none; /* Elimina el contenido del pseudo-elemento */
+    display: none; /* Evita que se renderice */
+}
+
+/* Solo dentro de .dashlet-indicador y .ibo-dashboard--grid */
+.dashlet-indicador .ibo-dashboard--grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Ajuste dinámico de las celdas */
+    gap: 10px; /* Espaciado entre celdas */
+}
+
+/* Estilo básico para las celdas dentro del contenedor */
+.dashlet-indicador .ibo-dashboard--grid .cell {
+    background-color: #f0f0f0; /* Color de fondo (opcional) */
+    border: 1px solid #ccc; /* Borde (opcional) */
+    padding: 10px; /* Espaciado dentro de la celda */
+    text-align: center; /* Centrar el contenido */
+}
+

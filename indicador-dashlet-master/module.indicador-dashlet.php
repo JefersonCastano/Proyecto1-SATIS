@@ -49,5 +49,9 @@ SetupWebPage::AddModule(
 	)
 );
 
+if (file_exists(APPROOT . 'extensions/indicador-dashlet-master/asset/css/dashlet-indicador.css')) {
+    $sCSSFile = utils::GetAbsoluteUrlModulesRoot() . 'indicador-dashlet-master/asset/css/dashlet-indicador.css';
+    $oPage->add_linked_stylesheet($sCSSFile);
+}
 
 ?>
