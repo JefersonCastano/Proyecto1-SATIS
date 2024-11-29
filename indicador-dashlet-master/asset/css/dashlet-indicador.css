@@ -1,11 +1,11 @@
-/* Chart Title */
+/* Titulos */
 .blue-bold-text {
     color: #1F77B4;
     font-size: 30px;
     font-weight: bold;
 }
 
-/* Filter ComboBox */
+/* Combobox para seleccionar filtro */
 .form-group-horizontal {
     display: flex;
     align-items: center;
@@ -29,7 +29,7 @@
     appearance: none; 
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 6'%3E%3Cpath fill='%23DD6C21' d='M0 0L5 6L10 0z'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
-    background-position: right 12px center; /* Controla la posición de la flecha */
+    background-position: right 12px center; 
     background-size: 10px;
 }
 
@@ -39,7 +39,7 @@
     box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
-/* Submit Button */
+/* Boton de aplicar filtro */
 .submit-button {
     background-color: #2c5382;
     color: white;
@@ -52,7 +52,7 @@
 
 /* ------ Dashlets -------*/
 
-/* Superior Charts Bar */
+/* Barra superior de los dashlets */
 .ibo-panel--body .ibo-panel--body::before {
     content: none;
     display: none; 
@@ -62,7 +62,7 @@
     background-color: #2c5382 !important;
 }
 
-/* Bar Charts*/
+/* Grafica de barras */
 [class*="c3-bar-"]:nth-of-type(even) {
     fill: #e92e2e !important;
 }
@@ -74,7 +74,7 @@
     color: #2c5382;
 }
 
-/* Pie Charts*/
+/* Grafiaca de pastel */
 #twoArcPieChart .c3-arc-series-1 {
     fill: #e92e2e !important;
 } 
