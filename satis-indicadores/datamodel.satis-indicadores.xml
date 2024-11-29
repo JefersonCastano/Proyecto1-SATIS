@@ -32,33 +32,29 @@
               </dashlet>
               <dashlet id="3" xsi:type="DashletIndicador">
                 <rank>2</rank>
-                <type>satisfaccion</type>
+                <type>implementacion-requerimientos</type>
               </dashlet>
-              <!--
               <dashlet id="4" xsi:type="DashletIndicador">
                 <rank>3</rank>
-                <type>cierre-tickets-analista</type>
+                <type>resolucion-requerimientos-organizacion</type>
               </dashlet>
-              -->
             </dashlets> 
           </cell>
           <cell id="1">
             <rank>1</rank>
             <dashlets>
-              <dashlet id="2" xsi:type="DashletIndicador">
+              <dashlet id="5" xsi:type="DashletIndicador">
                 <rank>4</rank>
                 <type>requerimientos-estado</type>
               </dashlet>
-              <!--
-              <dashlet id="3" xsi:type="DashletIndicador">
-                <rank>3</rank>
-                <type>resolucion-requerimientos-organizacion</type>
+              <dashlet id="6" xsi:type="DashletIndicador">
+                <rank>5</rank>
+                <type>satisfaccion</type>
               </dashlet>
-              <dashlet id="4" xsi:type="DashletIndicador">
-                <rank>4</rank>
-                <type>implementacion-requerimientos</type>
+              <dashlet id="7" xsi:type="DashletIndicador">
+                <rank>6</rank>
+                <type>cierre-tickets-analista</type>
               </dashlet>
-              -->
             </dashlets>
           </cell>
         </cells>

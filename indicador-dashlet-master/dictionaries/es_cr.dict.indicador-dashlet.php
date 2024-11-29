@@ -27,13 +27,20 @@ Dict::Add('ES CR', 'Spanish', 'Español, Castellano', array(
 	'UI:DashletIndicador:Prop-Type-Tiempo-Resolucion-Requerimientos:Prop-NoSel' => 'Por favor seleccione el criterio por el cual los requerimientos serán agrupados',
 
 	'UI:DashletIndicador:Prop-Type-Requerimientos-Estado' => 'Requerimientos por Estado',
-	'UI:DashletIndicador:Prop-Type-Requerimientos-Estado:chart1-title' => 'Cantidad de Requerimientos por Estado',
+	'UI:DashletIndicador:Prop-Type-Requerimientos-Estado:chart1-title' => 'Cantidad de Requerimientos',
 	'UI:DashletIndicador:Prop-Type-Requerimientos-Estado:chart2-title' => 'Requerimientos Reportados vs Resueltos',
+	'UI:DashletIndicador:Prop-Type-Requerimientos-Estado:chart2-legend-report' => 'Reportados',
+	'UI:DashletIndicador:Prop-Type-Requerimientos-Estado:chart2-legend-resolved' => 'Resueltos',
 
 	'UI:DashletIndicador:Prop-Type-Satisfaccion' => 'Requerimientos por Nivel de Satisfacción',
 
-	'UI:DashletIndicador:Prop-Type-Resolucion-Requerimientos-Organizacion' => 'Cantidad de requerimientos y tiempo medio de resolución según la organización',
-	'UI:DashletIndicador:Prop-Type-Cierre-Tickets-Analista' => 'Tasa de Cierre de Tickets de Soporte por Analista en el Área de TI',
-	'UI:DashletIndicador:Prop-Type-Implementacion-Requerimientos' => 'Porcentaje de implementación de requerimientos aprobados para los sistemas de información de la Universidad del Cauca',
-	'UI:DashletIndicador:Prop-Type-Test' => 'Tests',
+	'UI:DashletIndicador:Prop-Type-Resolucion-Requerimientos-Organizacion' => 'Requerimientos por Organización',
+	'UI:DashletIndicador:Prop-Type-Resolucion-Requerimientos-Organizacion:chart1-title' => 'Cantidad de Requerimientos',
+	'UI:DashletIndicador:Prop-Type-Resolucion-Requerimientos-Organizacion:chart2-title' => 'Tiempo Medio de Resolución',
+
+	'UI:DashletIndicador:Prop-Type-Cierre-Tickets-Analista' => 'Tasa de Cierre de Tickets por Analista',
+
+	'UI:DashletIndicador:Prop-Type-Implementacion-Requerimientos' => 'Implementación de Requerimientos',
+	'UI:DashletIndicador:Prop-Type-Implementacion-Requerimientos:Percentage' => 'Porcentaje de Implementación de Requerimientos',
+	'UI:DashletIndicador:Prop-Type-Implementacion-Requerimientos:chart-title' => 'Aprobados vs Esperando Aprobación',
 ));

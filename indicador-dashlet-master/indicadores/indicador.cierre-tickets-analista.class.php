@@ -19,8 +19,8 @@ class IndicadorCierreTicketsAnalista extends Indicador
 
     public function Render($oPage, $bEditMode = false, $aExtraParams = array())
     {
-        // Configuración de las propiedades del dashlet
-        $properties['title'] = 'Rendimiento de Cierre de Tickets por Analista';
+        // Propiedades del dashlet
+        $properties['title'] = Dict::S('UI:DashletIndicador:Prop-Type-Cierre-Tickets-Analista');
         $properties['query'] = 'SELECT UserRequest WHERE status NOT IN ("rejected","closed")';
         $properties['group_by'] = 'agent_id';
         $properties['style'] = 'table';
@@ -28,7 +28,7 @@ class IndicadorCierreTicketsAnalista extends Indicador
         $properties['aggregation_attribute'] = 'time_spent';
         $properties['limit'] = '';
         $properties['order_by'] = 'function';
-        $properties['order_direction'] = 'desc';
+        $properties['order_direction'] = '';
 
         // Configurar el dashlet con las propiedades
         $this->aDashletGroupBy->FromParams($properties);

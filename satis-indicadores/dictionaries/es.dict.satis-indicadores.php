@@ -9,7 +9,7 @@
  Dict::Add('ES CR', 'Spanish', 'Español, Castellano', array(
 	'Menu:Indicadores' => 'Indicadores',
 	'Menu:Indicadores+' => 'Indicadores',
-	'Menu:IndicadoresOverView' => 'Resumen de Indicadores',
-	'Menu:IndicadoresOverView:Title' => 'Resumen de Indicadores'
+	'Menu:IndicadoresOverView' => 'Indicadores',
+	'Menu:IndicadoresOverView:Title' => 'Indicadores'
 ));
 ?>

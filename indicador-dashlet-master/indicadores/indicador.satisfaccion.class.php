@@ -11,6 +11,7 @@
 
         public function Render($oPage, $bEditMode = false, $aExtraParams = array()) {
 
+            // Propiedades del dashlet
             $properties['title'] = Dict::S('UI:DashletIndicador:Prop-Type-Satisfaccion');
             $properties['query'] = 'SELECT UserRequest WHERE status IN ("Resolved","Closed")';
             $properties['group_by'] = 'user_satisfaction';
@@ -18,11 +19,13 @@
             $properties['aggregation_function'] = 'count';
             $properties['aggregation_attribute'] = '';
             $properties['limit'] = '';
-            $properties['order_by'] = '';
+            $properties['order_by'] = 'function';
             $properties['order_direction'] = '';
 
+            // Configurar el dashlet con las propiedades
             $this->aDashletGroupBy->FromParams($properties);
 
+            // Renderizar el dashlet
             return $this->aDashletGroupBy->Render($oPage, $bEditMode, $aExtraParams);
         }
     }

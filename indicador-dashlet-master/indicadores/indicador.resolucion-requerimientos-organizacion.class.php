@@ -6,40 +6,35 @@ use Combodo\iTop\Application\UI\Base\Component\Panel\PanelUIBlockFactory;
 class IndicadorResolucionRequerimientosOrganizacion extends Indicador
 {
 
-    protected $aDashletGroupBy;
-    protected $sId;
+    protected $aDashletPie;
+    protected $aDashletBar;
+    protected $sIdBar;
 
     public function __construct($oModelReflection, $sId)
     {
-        $this->aDashletGroupBy = new DashletGroupByPie($oModelReflection, $sId);
-        $this->sId = $sId;
+        $this->aDashletPie = new DashletGroupByPie($oModelReflection, $sId);
+        $this->aDashletBar = new DashletGroupByBars($oModelReflection, $sId . '_bar');
+        $this->sIdBar = $sId . '_bar';
     }
 
     public function Render($oPage, $bEditMode = false, $aExtraParams = array())
     {
+        // Crear el panel para el indicador
+        $oPanel = PanelUIBlockFactory::MakeForInformation(Dict::S('UI:DashletIndicador:Prop-Type-Resolucion-Requerimientos-Organizacion'), '');
 
-        // Propiedades del dashlet
-        $properties['title'] = 'Tiempo de Resolución por Organización';
-        $properties['query'] = 'SELECT UserRequest WHERE status IN ("rejected","closed")';
-        $properties['group_by'] = 'org_id';
-        $properties['style'] = 'bars';
-        $properties['aggregation_function'] = 'avg';
-        $properties['aggregation_attribute'] = 'time_spent';
-        $properties['limit'] = '';
-        $properties['order_by'] = 'function';
-        $properties['order_direction'] = '';
+        // Agregar gráfico de cantidad de requerimientos
+        $oPanel->AddHtml('<p class="chart-title">' . Dict::S('UI:DashletIndicador:Prop-Type-Resolucion-Requerimientos-Organizacion:chart1-title') . '</p>');
+        $oPanel->AddMainBlock($this->GetGraphicAmount($oPage, $bEditMode, $aExtraParams));
 
-        // Configuración del dashlet
-        $this->aDashletGroupBy->FromParams($properties);
-
-        // Renderizar el gráfico
-        $output = $this->aDashletGroupBy->Render($oPage, $bEditMode, $aExtraParams);
+        // Agregar gráfico de tiempo medio de resolución
+        $oPanel->AddHtml('<p class="chart-title">' . Dict::S('UI:DashletIndicador:Prop-Type-Resolucion-Requerimientos-Organizacion:chart2-title') . '</p>');
+        $oPanel->AddMainBlock($this->GetGraphicTime($oPage, $bEditMode, $aExtraParams));
 
         // Insertar el script de JavaScript para manipular el gráfico
         $script = <<<JS
         <script type="text/javascript">
             function convertTicks() {
-                var ticks = document.querySelectorAll('#my_chart_block_{$this->sId}2 .c3-axis-y .tick text tspan');
+                var ticks = document.querySelectorAll('#my_chart_block_{$this->sIdBar}2 .c3-axis-y .tick text tspan');
                 
                 if (ticks.length === 0) {
                     return;
@@ -55,7 +50,7 @@ class IndicadorResolucionRequerimientosOrganizacion extends Indicador
             }
 
             document.addEventListener("DOMContentLoaded", function() {
-                setTimeout(convertTicks, 3000); 
+                setTimeout(convertTicks, 8000); 
 
                 window.addEventListener('resize', function() {
                     setTimeout(convertTicks, 500);
@@ -64,9 +59,61 @@ class IndicadorResolucionRequerimientosOrganizacion extends Indicador
         </script>
         JS;
 
-        // Agregar el script al final del HTML generado
-        $output->AddHtml($script);
+        //Agregar el script al final del HTML generado
+        $oPanel->AddHtml($script);
 
-        return $output;
+        return $oPanel; 
+    }
+
+    /**
+     * Obtiene el gráfico de cantidad de requerimientos
+     * @param $oPage Página
+     * @param $bEditMode Modo de edición
+     * @param $aExtraParams Parámetros extra
+     * @return DashletContainer Gráfico de cantidad de requerimientos
+     */
+    private function GetGraphicAmount($oPage, $bEditMode, $aExtraParams) 
+    {
+        // Propiedades del dashlet
+        $properties['query'] = 'SELECT UserRequest WHERE status IN ("rejected","closed")';
+        $properties['group_by'] = 'org_id';
+        $properties['style'] = 'pie';
+        $properties['aggregation_function'] = 'count';
+        $properties['aggregation_attribute'] = '';
+        $properties['limit'] = '';
+        $properties['order_by'] = 'function';
+        $properties['order_direction'] = '';
+
+        // Configurar el dashlet con las propiedades
+        $this->aDashletPie->FromParams($properties);
+
+        // Renderizar el dashlet
+        return $this->aDashletPie->Render($oPage, $bEditMode, $aExtraParams);
+    }
+
+    /**
+     * Obtiene el gráfico de tiempo medio de resolución
+     * @param $oPage Página
+     * @param $bEditMode Modo de edición
+     * @param $aExtraParams Parámetros extra
+     * @return DashletContainer Gráfico de tiempo medio de resolución
+     */
+    private function GetGraphicTime($oPage, $bEditMode, $aExtraParams) 
+    {
+        // Propiedades del dashlet
+        $properties['query'] = 'SELECT UserRequest WHERE status IN ("rejected","closed")';
+        $properties['group_by'] = 'org_id';
+        $properties['style'] = 'bars';
+        $properties['aggregation_function'] = 'avg';
+        $properties['aggregation_attribute'] = 'time_spent';
+        $properties['limit'] = '';
+        $properties['order_by'] = 'function';
+        $properties['order_direction'] = '';
+
+        // Configurar el dashlet con las propiedades
+        $this->aDashletBar->FromParams($properties);
+
+        // Renderizar el dashlet
+        return $this->aDashletBar->Render($oPage, $bEditMode, $aExtraParams);
     }
 }
