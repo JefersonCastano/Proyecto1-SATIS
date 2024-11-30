@@ -37,29 +37,12 @@ class IndicadorCierreTicketsAnalista extends Indicador
         $output = $this->aDashletGroupBy->Render($oPage, $bEditMode, $aExtraParams);
 
         // Insertar el script de JavaScript para manipular los datos después de cargar la página
+        $path = utils::GetAbsoluteUrlModulesRoot() . 'indicador-dashlet-master/asset/js/scripts.js';
         $script = <<<JS
-        <script type="text/javascript">
-            document.addEventListener("DOMContentLoaded", function() {
-                var table = document.querySelector('#block_{$this->sId} table');
-                if (table) {
-                    var rows = table.querySelectorAll('tr');
-                    rows.forEach(function(row) {
-                        var cells = row.querySelectorAll('td');
-                        cells.forEach(function(cell) {
-                            var value = parseInt(cell.textContent.trim());
-                            if (!isNaN(value)) {
-                                // Convertir los segundos a horas, minutos y segundos
-                                var days = Math.floor(value / 86400); // 86400 segundos en un día
-                                var hours = Math.floor((value % 86400) / 3600);
-                                var minutes = Math.floor((value % 3600) / 60);
-                                var seconds = value % 60;
-                                cell.textContent = days + 'd ' + hours + 'h ' + minutes + 'm ' + seconds + 's';
-                            }
-                        });
-                    });
-                }
-            });
-        </script>
+            <script type="text/javascript" src={$path}></script>
+            <script type="text/javascript">
+                window.tableId = '{$this->sId}';
+            </script>
         JS;
 
         // Agregar el script al final del HTML generado

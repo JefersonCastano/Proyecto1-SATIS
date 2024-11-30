@@ -8,10 +8,12 @@
 
         protected $aType = array();
         protected $aDashletGroupBy;
+        protected $sId;
 
         public function __construct($oModelReflection, $sId) {
             $this->aType = ['general', 'impact', 'origin', 'priority', 'request_type', 'urgency']; // Tipos de filtro
             $this->aDashletGroupBy = new DashletGroupByPie($oModelReflection, $sId);
+            $this->sId = $sId;
         }
 
         public function Render($oPage, $bEditMode = false, $aExtraParams = array()) {
@@ -70,6 +72,19 @@
             if ($selectedValue != 0) {
                 $oPanel->AddHtml('<p class="chart-title">Requerimientos por ' . Dict::S('Class:UserRequest/Attribute:' . $this->aType[$selectedValue]) . '</p>');
                 $oPanel->AddMainBlock($this->GetGraphic($oPage, $bEditMode , $aExtraParams, $selectedValue));
+
+                        // Insertar el script de JavaScript para manipular los datos después de cargar la página
+                $path = utils::GetAbsoluteUrlModulesRoot() . 'indicador-dashlet-master/asset/js/scripts.js';
+                $script = <<<JS
+                    <script type="text/javascript" src={$path}></script>
+                    <script type="text/javascript">
+                        window.timeChartId = '{$this->sId}';
+                    </script>
+                JS;
+
+                // Agregar el script al final del HTML generado
+                $oPanel->AddHtml($script);
+
             } else {
                 $oPanel->AddHtml('<p >' . Dict::S('UI:DashletIndicador:Prop-Type-Tiempo-Resolucion-Requerimientos:Prop-NoSel') . '</p>');
             }
@@ -94,8 +109,8 @@
             $properties['query'] = "SELECT UserRequest FROM UserRequest WHERE UserRequest.status IN ('Resolved','Closed')";
             $properties['group_by'] = $type;
             $properties['style'] = 'bars';
-            $properties['aggregation_function'] = 'count';
-            $properties['aggregation_attribute'] = '';
+            $properties['aggregation_function'] = 'avg';
+            $properties['aggregation_attribute'] = 'time_spent';
             $properties['limit'] = '';
             $properties['order_by'] = 'function';
             $properties['order_direction'] = '';

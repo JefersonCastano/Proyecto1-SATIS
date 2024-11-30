@@ -29,39 +29,19 @@ class IndicadorResolucionRequerimientosOrganizacion extends Indicador
         // Agregar gráfico de tiempo medio de resolución
         $oPanel->AddHtml('<p class="chart-title">' . Dict::S('UI:DashletIndicador:Prop-Type-Resolucion-Requerimientos-Organizacion:chart2-title') . '</p>');
         $oPanel->AddMainBlock($this->GetGraphicTime($oPage, $bEditMode, $aExtraParams));
-
+        
+        $path = utils::GetAbsoluteUrlModulesRoot() . 'indicador-dashlet-master/asset/js/scripts.js';
+        
         // Insertar el script de JavaScript para manipular el gráfico
         $script = <<<JS
-        <script type="text/javascript">
-            function convertTicks() {
-                var ticks = document.querySelectorAll('#my_chart_block_{$this->sIdBar}2 .c3-axis-y .tick text tspan');
-                
-                if (ticks.length === 0) {
-                    return;
-                } else {
-                    ticks.forEach(function(tick) {
-                        var seconds = tick.textContent;
-                        if (!isNaN(seconds) && seconds[-1] !== 'h') {
-                            var hours = Math.floor(seconds / 3600); 
-                            tick.textContent = hours + 'h '; 
-                        }
-                    });
-                }
-            }
-
-            document.addEventListener("DOMContentLoaded", function() {
-                setTimeout(convertTicks, 8000); 
-
-                window.addEventListener('resize', function() {
-                    setTimeout(convertTicks, 500);
-                });
-            });
-        </script>
+            <script type="text/javascript" src={$path}></script>
+            <script type="text/javascript">
+                window.chartId = '{$this->sIdBar}';
+            </script>
         JS;
 
         //Agregar el script al final del HTML generado
         $oPanel->AddHtml($script);
-
         return $oPanel; 
     }
 
