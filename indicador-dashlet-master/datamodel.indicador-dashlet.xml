@@ -6,11 +6,6 @@
 		<label>Indicador</label>
 		<icon>indicador-dashlet-master/images/icono-indicadores.png</icon>
 		<description>Dashlet que muestra la información de un indicador.</description>
-		<configuration>
-			<url>http://via.placeholder.com/600x300</url>
-			<width>600</width>
-			<height>300</height>
-		</configuration>
 	  </dashlet>
 	</dashlets>
   </meta>
