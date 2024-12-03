@@ -15,7 +15,7 @@ Dict::Add('ES CR', 'Spanish', 'Español, Castellano', array(
 
 	'UI:DashletIndicador:Prop-Type-Tiempo-Resolucion-Requerimientos' => 'Tiempo de Resolución de Requerimientos',
 	'UI:DashletIndicador:Prop-Type-Tiempo-Resolucion-Requerimientos:Prop-AverageTime' => 'Tiempo de Resolución Promedio',
-	'UI:DashletIndicador:Prop-Type-Tiempo-Resolucion-Requerimientos:Prop-MedianTime' => 'Tiempo de Resolución Medio',
+	'UI:DashletIndicador:Prop-Type-Tiempo-Resolucion-Requerimientos:Prop-MedianTime' => 'Mediana del Tiempo de Resolución',
 	'UI:DashletIndicador:Prop-Type-Tiempo-Resolucion-Requerimientos:Prop-MostFrequentType' => 'Tipo de Resolución Más Frecuente',
 	'UI:DashletIndicador:Prop-Type-Tiempo-Resolucion-Requerimientos:Prop-Combobox-Filter' => 'Filtro',
 	'UI:DashletIndicador:Prop-Type-Tiempo-Resolucion-Requerimientos:Prop-Combobox-Filter-Sel' => '-- Seleccione uno --',
