@@ -45,14 +45,3 @@
 ## Especificaciones técnicas
 - Versión de iTop: 3.0.3-10998 (Disponible en https://sourceforge.net/projects/itop/files/itop/3.0.3/)
 - Versión de php: 7.4 (Para windows se puede descargar desde https://windows.php.net/downloads/releases/php-7.4.33-Win32-vc15-x64.zip)
----
-# Créditos de Desarrollo
-
-Este proyecto fue desarrollado por:
-
-- **Katherin Alexandra Zuñiga** - kzunigam@unicauca.edu.co
-- **Valentina Fernández Guerrero** - vfernandezg@unicauca.edu.co
-- **David Santiago Giron Muñoz** - davidgiron@unicauca.edu.co
-- **Jeferson Castano Ossa** - jcastanoossa@unicauca.edu.co
-- **David Santiago Fernández Dejoy** - dfernandezd@unicauca.edu.co
-- **Jose David Chilito Cometa** - jdchilito@unicauca.edu.co
