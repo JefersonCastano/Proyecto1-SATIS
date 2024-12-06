@@ -19,6 +19,10 @@ class IndicadorCierreTicketsAnalista extends Indicador
 
     public function Render($oPage, $bEditMode = false, $aExtraParams = array())
     {
+        // Agregar el archivo CSS
+        $sCSSFile = utils::GetAbsoluteUrlModulesRoot() . 'indicador-dashlet-master/asset/css/dashlet-indicador.css';
+        $oPage->add_linked_stylesheet($sCSSFile);
+        
         // Propiedades del dashlet
         $properties['title'] = Dict::S('UI:DashletIndicador:Prop-Type-Cierre-Tickets-Analista');
         $properties['query'] = 'SELECT UserRequest WHERE status NOT IN ("rejected","closed")';

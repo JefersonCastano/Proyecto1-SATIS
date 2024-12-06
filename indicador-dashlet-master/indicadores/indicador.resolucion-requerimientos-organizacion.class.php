@@ -19,6 +19,10 @@ class IndicadorResolucionRequerimientosOrganizacion extends Indicador
 
     public function Render($oPage, $bEditMode = false, $aExtraParams = array())
     {
+        // Agregar el archivo CSS
+        $sCSSFile = utils::GetAbsoluteUrlModulesRoot() . 'indicador-dashlet-master/asset/css/dashlet-indicador.css';
+        $oPage->add_linked_stylesheet($sCSSFile);
+        
         // Crear el panel para el indicador
         $oPanel = PanelUIBlockFactory::MakeForInformation(Dict::S('UI:DashletIndicador:Prop-Type-Resolucion-Requerimientos-Organizacion'), '');
 

@@ -14,6 +14,10 @@
 
         public function Render($oPage, $bEditMode = false, $aExtraParams = array()) {
 
+            // Agregar el archivo CSS
+            $sCSSFile = utils::GetAbsoluteUrlModulesRoot() . 'indicador-dashlet-master/asset/css/dashlet-indicador.css';
+            $oPage->add_linked_stylesheet($sCSSFile);
+            
             //Obtener el porcentaje de implementación de requerimientos
             $iPercentage = $this->GetImplementationPercentage();
             
